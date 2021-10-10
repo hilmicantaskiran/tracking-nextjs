@@ -10,8 +10,8 @@ export default function Menu({ data }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <main className="flex flex-col items-center md:justify-center w-full flex-1 px-20 text-center">
-                    <p className="text-4xl font-bold mt-20 md:mt-0 text-center">{ data.name }</p>
-                    <p className="text-2xl m-4 text-center">Toplam harcama: {data.price }₺</p>
+                    <p className="text-4xl font-bold mt-20 md:mt-0 text-center">Hilmi Can Taşkıran</p>
+                    <p className="text-2xl m-4 text-center">Toplam harcama: 500₺</p>
                     <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 md:w-full">
                         <Link href="/new-payment">
                             <h3 className="text-2xl font-bold p-6 mt-6 text-left border-2 w-96 rounded-xl hover:text-blue-600 hover:border-blue-600">Yeni Ödeme Ekle</h3>
@@ -33,7 +33,7 @@ export default function Menu({ data }) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch('http://localhost:3000/api/name')
+    const res = await fetch('')
     const data = await res.json()
 
     return {
