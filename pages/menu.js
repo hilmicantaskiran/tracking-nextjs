@@ -31,14 +31,3 @@ export default function Menu({ data }) {
         </>
     )
 }
-
-export async function getStaticProps() {
-    const res = await fetch('')
-    const data = await res.json()
-
-    return {
-      props: {
-        data
-      },
-    }
-  }
