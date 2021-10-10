@@ -17,15 +17,15 @@ export default function Home() {
               <div className="flex flex-col md:flex-row w-full items-start justify-start md:items-center md:justify-center mt-6">
                 <label 
                   className="text-gray-500 font-bold mb-1 pr-4 md:w-16"
-                  htmlFor="name"
+                  htmlFor="email"
                 >
-                  İsim
+                  Email
                 </label>
                 <input 
                   className="bg-gray-200 appearance-none shadow-lg border-2 border-gray-200 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
-                  id="name" 
-                  type="text" 
-                  placeholder="Hilmi Can Taşkıran">
+                  id="email" 
+                  type="email" 
+                  placeholder="example@email.com">
                 </input>
               </div>
               <div className="flex flex-col md:flex-row w-full items-start justify-start md:items-center md:justify-center mt-4 md:mt-6 mb-6">
