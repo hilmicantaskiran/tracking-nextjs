@@ -18,7 +18,8 @@ export default function Home() {
         password: password
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://odemetakip.vercel.app'
       }
     })
 
