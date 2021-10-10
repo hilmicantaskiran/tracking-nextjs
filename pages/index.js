@@ -1,19 +1,32 @@
 import Head from "next/head"
-import Link from "next/link"
+import { useRouter } from 'next/router'
 import { useState } from "react"
 
 export default function Home() {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    const data = {
-      email,
-      password,
-    }
+  const handleSubmit = async event => {
+    event.preventDefault()
+    console.log(email, password)
+
+    const response = await fetch('https://odemetakip.herokuapp.com/api/v1/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await response.json()
     console.log(data)
-  };
+
+    router.push('/menu')
+  }
 
   return (
     <>
@@ -58,14 +71,12 @@ export default function Home() {
                 </input>
               </div>
               <div className="mt-4">
-                <Link href="/menu">
                   <button
                     className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
                     type="submit"
                   >
                     Giriş
                   </button>
-                </Link>
             </div>
           </form>
         </main>
