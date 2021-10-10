@@ -9,7 +9,6 @@ export default function Home() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    console.log(email, password)
 
     const response = await fetch('https://odemetakip.herokuapp.com/api/v1/auth/login', {
       method: 'POST',
@@ -18,8 +17,7 @@ export default function Home() {
         password: password
       }),
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://odemetakip.vercel.app'
+        'Content-Type': 'application/json'
       }
     })
 
