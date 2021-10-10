@@ -43,7 +43,7 @@ export default function Home() {
                 </input>
               </div>
               <div className="mt-8">
-                <Link href="">
+                <Link href="/">
                   <button
                     className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
                     type="submit"
