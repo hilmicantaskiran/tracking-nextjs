@@ -1,15 +1,14 @@
 import 'tailwindcss/tailwind.css'
+import { AuthProvider } from '../hooks'
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <div>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
+      <>
+        <div>
+          <main>
+            <Component {...pageProps} />
+          </main>
+        </div>
+      </>
   )
 }
-
-export default MyApp
