@@ -2,7 +2,6 @@ import Head from "next/head"
 import { useRouter } from 'next/router'
 import { useState } from "react"
 import HttpService from "../services/HttpService"
-import { useAuth } from "../hooks"
 
 export default function Home() {
   const [email, setEmail] = useState('')
