@@ -29,6 +29,7 @@ export default async function HttpService(options) {
     const response = await fetch(uri + options.url, httpOptions)
     // const response = await fetch(uri_local + options.url, httpOptions)
     const data = await response.json()
+    
     if (options.url == 'auth/login') {
         localStorage.setItem('token', data.data.token)
     }

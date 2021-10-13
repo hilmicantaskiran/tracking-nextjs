@@ -14,7 +14,7 @@ export default function NewPayment({ stuff }) {
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
     
-    const getToken = async () => {
+    const getNames = async () => {
         const uri = process.env.NEXT_PUBLIC_API_URL
         const res = await axios.get(uri + 'payment/getInfo', {
             headers: {
@@ -30,7 +30,7 @@ export default function NewPayment({ stuff }) {
         })
     }
 
-    getToken()
+    getNames()
     
     if (names.length != 0) {
         for (var id of names) {
@@ -139,14 +139,12 @@ export default function NewPayment({ stuff }) {
                             </input>
                         </div>
                         <div className="mt-10">
-                            <Link href='/menu'>
-                                <button
-                                    className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
-                                    type="submit"
-                                >
-                                    Ödemeyi Ekle
-                                </button>
-                            </Link>
+                            <button
+                                className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
+                                type="submit"
+                            >
+                                Ödemeyi Ekle
+                            </button>
                         </div>
                     </form>
                 </main>
