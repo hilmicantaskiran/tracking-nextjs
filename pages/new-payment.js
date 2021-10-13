@@ -20,7 +20,6 @@ export default function NewPayment({ stuff }) {
                 'Authorization': 'Bearer ' +  localStorage.getItem('token')
             }
         }).then((res) => {
-            console.log(res)
             {res.data.data[0].users.map((d) => (
                 option.push({
                     'value': d.userID,
@@ -40,7 +39,6 @@ export default function NewPayment({ stuff }) {
     else {
         stuffIDs = []
     }
-    console.log(stuffIDs)
 
     const handleSubmit = async event => {
         event.preventDefault()
@@ -50,10 +48,6 @@ export default function NewPayment({ stuff }) {
         formData.append('price', amount)
         formData.append('stuffIDs', stuffIDs)
         formData.append('image', image)
-        
-        for (var value of formData.values()) {
-            console.log(value, typeof(value))
-        }
     
         const httpOptions = {
           url: 'payment/616478272ad64d9b6ce80306',
