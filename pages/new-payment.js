@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link"
 import { useState } from "react"
 import Select from "react-select"
 import HttpService from "../services/HttpService"
@@ -138,12 +139,14 @@ export default function NewPayment({ stuff }) {
                             </input>
                         </div>
                         <div className="mt-10">
-                            <button
-                                className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
-                                type="submit"
-                            >
-                                Ödemeyi Ekle
-                            </button>
+                            <Link href='/menu'>
+                                <button
+                                    className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
+                                    type="submit"
+                                >
+                                    Ödemeyi Ekle
+                                </button>
+                            </Link>
                         </div>
                     </form>
                 </main>
@@ -151,22 +154,3 @@ export default function NewPayment({ stuff }) {
         </>
     )
 }
-
-/*
-export async function getServerSideProps() {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpbG1pY2FudGFza2lyYW5Ab3V0bG9vay5jb20iLCJpZCI6IjYxNjQ4ZjhiNDI0ZDQ4MWI4MDczNDQ5MiIsImlhdCI6MTYzNDEyMjkzOCwiZXhwIjoxNjM0MjA5MzM4fQ.BAfDR4tnwj6V3leBXj280TK9Ujkz6uvFp24hY0rWDk4'
-    const uri = process.env.NEXT_PUBLIC_API_URL
-    const res = await axios.get(uri + 'payment/getInfo', {
-        headers: {
-            'Authorization': 'Bearer ' +  token
-        }
-    })
-    const stuff = res.data
-
-    return {
-        props: {
-            stuff,
-        },
-    }
-}
-*/
