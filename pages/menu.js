@@ -10,8 +10,8 @@ export default function Menu({ data }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <main className="flex flex-col items-center justify-center w-full px-6 text-center">
-                    <p className="text-4xl font-bold mt-20 md:mt-0 text-center">{ data.name }</p>
-                    <p className="text-2xl m-4 text-center">Toplam harcama: {data.price }₺</p>
+                    <p className="text-4xl font-bold mt-20 md:mt-0 text-center">{ data[0].name }</p>
+                    <p className="text-2xl m-4 text-center">Toplam harcama: {data[0].price }₺</p>
                     <div className="flex flex-wrap items-start justify-around max-w-4xl mt-6 w-full">
                         <Link href="/new-payment">
                             <h3 className="text-xl font-bold p-6 mt-4 text-left border-2 border-gray-300 w-96 rounded-xl hover:text-blue-600 hover:border-blue-600">Yeni Ödeme Ekle</h3>
