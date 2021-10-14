@@ -2,11 +2,18 @@ import Head from "next/head"
 import { useRouter } from 'next/router'
 import { useState } from "react"
 import HttpService from "../services/HttpService"
+import { useToasts } from "react-toast-notifications"
 
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
+  const { addToast } = useToasts()
+
+  const getToken = async () => {
+    if (await localStorage.getItem('token')) { router.replace('/menu') }
+  }
+  getToken()
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -23,6 +30,7 @@ export default function Home() {
     }
     const data = await HttpService(httpOptions)
     console.log(data)
+    addToast('Giriş yapıldı.', { appearance: 'success'})
     router.replace('/menu')
   }
 

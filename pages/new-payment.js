@@ -1,11 +1,15 @@
 import Head from "next/head"
-import Link from "next/link"
 import { useState } from "react"
 import Select from "react-select"
 import HttpService from "../services/HttpService"
 import axios from 'axios'
+import { useRouter } from "next/router"
+import { useToasts } from 'react-toast-notifications'
 
 export default function NewPayment({ stuff }) {
+    const router = useRouter()
+    const { addToast } = useToasts()
+
     const option = []
     let stuffIDs = []
 
@@ -62,6 +66,13 @@ export default function NewPayment({ stuff }) {
         }
         const data = await HttpService(httpOptions)
         console.log(data)
+        if (data.success) {
+            addToast('Ödeme başarıyla eklendi.', { appearance: 'success'})
+            router.replace('/menu')
+        }
+        else {
+            addToast('Ödeme ekleme başarısız oldu.', { appearance: 'error' })
+        }
     }
 
     return (
@@ -100,7 +111,7 @@ export default function NewPayment({ stuff }) {
                                 Kişiler
                             </label>
                             <Select
-                                className="w-full md:w-1/3 mt-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700"
+                                className="w-full md:w-1/3 mt-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-700"
                                 instanceId={option}
                                 closeMenuOnSelect={true}
                                 isMulti
@@ -131,7 +142,7 @@ export default function NewPayment({ stuff }) {
                                 Fotoğraf
                             </label>
                             <input 
-                                className="relative border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
+                                className="border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
                                 id="image"
                                 type="file"
                                 onChange={e => {setImage(e.target.files[0])}}
