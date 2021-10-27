@@ -1,15 +1,14 @@
 import Head from "next/head"
-import { useState } from "react"
-import Select from "react-select"
-import HttpService from "../services/HttpService"
 import axios from 'axios'
+import Select from "react-select"
 import { useRouter } from "next/router"
+import { useState, useEffect } from "react"
 import { useToasts } from 'react-toast-notifications'
+import HttpService from "../services/HttpService"
 
-export default function NewPayment({ stuff }) {
+export default function NewPayment() {
     const router = useRouter()
     const { addToast } = useToasts()
-
     const option = []
     let stuffIDs = []
 
@@ -25,7 +24,8 @@ export default function NewPayment({ stuff }) {
                 'Authorization': 'Bearer ' +  localStorage.getItem('token')
             }
         }).then((res) => {
-            {res.data.data[0].users.map((d) => (
+            const response = res.data.data[0]
+            {response.users.map((d) => (
                 option.push({
                     'value': d.userID,
                     'label': d.firstName
@@ -95,10 +95,11 @@ export default function NewPayment({ stuff }) {
                                 Harcama Miktarı
                             </label>
                             <input 
-                                className="border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
+                                className="bg-white shadow-md border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
                                 id="amount" 
                                 type="number"
                                 step="0.01"
+                                required
                                 onChange={e => {setAmount(e.target.value)}}
                             >
                             </input>
@@ -111,7 +112,7 @@ export default function NewPayment({ stuff }) {
                                 Kişiler
                             </label>
                             <Select
-                                className="w-full md:w-1/3 mt-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-700"
+                                className="shadow-md w-full md:w-1/3 mt-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-700"
                                 instanceId={option}
                                 closeMenuOnSelect={true}
                                 isMulti
@@ -128,9 +129,10 @@ export default function NewPayment({ stuff }) {
                                 Açıklama
                             </label>
                             <textarea 
-                                className="border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
+                                className="bg-white shadow-md border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
                                 id="description"
                                 rows="3"
+                                required
                                 onChange={e => {setDescription(e.target.value)}}
                             >
                             </textarea>
@@ -142,16 +144,18 @@ export default function NewPayment({ stuff }) {
                                 Fotoğraf
                             </label>
                             <input 
-                                className="border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
+                                className="bg-white shadow-md border border-gray-300 rounded w-full md:w-1/3 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-700" 
                                 id="image"
                                 type="file"
+                                accept="image/*"
+                                required
                                 onChange={e => {setImage(e.target.files[0])}}
                             >
                             </input>
                         </div>
                         <div className="mt-10">
                             <button
-                                className="shadow w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
+                                className="shadow-md w-full bg-blue-700 hover:bg-green-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-12 rounded" 
                                 type="submit"
                             >
                                 Ödemeyi Ekle

@@ -1,19 +1,18 @@
 import Head from "next/head"
 import { useRouter } from 'next/router'
-import { useState } from "react"
-import HttpService from "../services/HttpService"
 import { useToasts } from "react-toast-notifications"
+import { useState, useEffect } from "react"
+import HttpService from "../services/HttpService"
 
 export default function Home() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const router = useRouter()
   const { addToast } = useToasts()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const getToken = async () => {
-    if (await localStorage.getItem('token')) { router.replace('/menu') }
-  }
-  getToken()
+  useEffect(() => {
+    if (localStorage.getItem('token')) { router.replace('/menu') }
+  }, [])
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -58,6 +57,7 @@ export default function Home() {
                 id="email" 
                 type="email" 
                 placeholder="example@email.com"
+                required
                 onChange={e => {setEmail(e.target.value)}}>
               </input>
             </div>
@@ -73,6 +73,7 @@ export default function Home() {
                 id="password" 
                 type="password" 
                 placeholder="••••••••"
+                required
                 onChange={e => {setPassword(e.target.value)}}>
               </input>
             </div>

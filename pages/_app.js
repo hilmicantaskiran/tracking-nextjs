@@ -6,7 +6,7 @@ export default function MyApp({ Component, pageProps }) {
       <>
         <ToastProvider autoDismiss='true' autoDismissTimeout='5000' placement='top-center'>
           <div>
-            <main>
+            <main className="bg-gray-100 min-h-full">
               <Component {...pageProps} />
             </main>
           </div>
